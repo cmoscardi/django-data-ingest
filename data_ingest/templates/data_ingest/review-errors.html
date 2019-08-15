@@ -30,14 +30,38 @@
       <div class="message message-error no-bg" role="alert">
         {% if whole_table_errors %}
           <h3>Whole-table errors</h3>
+          <table>
+            <tr>
+              <th>
+                Error Code
+              </th>
+              <th>
+                Fields
+              </th>
+              <th>
+                Message
+              </th>
+              <th>
+                Severity
+              </th>
+            </tr>
+            {% for wte in whole_table_errors %}
+              <tr>
+                <td>{{ wte | get_value:'code'}}</td>
+                <td>{{ wte | get_value:'fields'}}</td>
+                <td>{{ wte | get_value:'message'}}</td>
+                <td>{{ wte | get_value:'severity'}}</td>
+              </tr>
+            {% endfor %}
+          </table>
             <ul>
-              {% for wte in whole_table_errors %}
-                <li>{{ wte }}</li>
-              {% endfor %}
             </ul>
         {% endif %}
       </div>
+      <hr />
 
+       
+      <h3>Row errors</h3>
       <table>
         <thead>
             <th>Row #</th><th>Severity</th></th><th>Error code</th><th>message</th>

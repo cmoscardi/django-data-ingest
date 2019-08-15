@@ -649,8 +649,11 @@ class RowwiseValidator(Validator):
             # Check for columns required by validator
             received_columns = set(headers)
             for rule in self.validator:
+                print(rule, "?!?")
                 expected_columns = set(rule['columns'])
+                print("==========")
                 missing_columns = expected_columns.difference(received_columns)
+                print("HERE??")
                 if missing_columns:
                     output.add_row_error(rn, 'Error', rule['error_code'],
                                          f'Unable to evaluate, missing columns: {missing_columns}', [])
